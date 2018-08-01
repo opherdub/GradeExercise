@@ -6,26 +6,19 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    //get list of files to work on. Filter for files with filePrefix only
-    val dir = new FileList(Settings.path, Settings.filePrefix)
+    val dir = new FileList(Settings.path, Settings.filePrefix)       //get list of files to work on. Filter for files with filePrefix only
     val files = dir.files  //list of files to work on
 
-    //create list of processed data objects, one for each file
-    val dataFiles = files.map(file => new FileReader(file.toString)).sortBy(_.filePath)
-    //extract results for each data object
-    val resultsList = dataFiles.map(data => new Calculator(data).results)
+    val dataFiles = files.map(file => new FileReader(file.toString)).sortBy(_.filePath)   //create list of processed data objects, one for each file
+    val resultsList = dataFiles.map(data => Calculator.calcStats(data))       //extract results for each data object
 
-    //calculate statistics accross all data objects
-    val stats = new Statistics().calculateAverageResults(resultsList)
-
-    //calculate histrogram across the whole dataset
-    var finalHistogram = new Histogram(100)
+    val stats = new Statistics().calculateAverageResults(resultsList)     //calculate statistics accross all data objects
+    var finalHistogram = new Histogram(100)                             //calculate histrogram across the whole dataset
     dataFiles.foreach(file => finalHistogram.calcHistogram(file.grades))
 
 
-    // #######################
     // #### print results ####
-    // #######################
+    // ####---------------####
 
     println("Fun Stuff")
 

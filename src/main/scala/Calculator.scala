@@ -1,11 +1,9 @@
 package FileStuff
 
 //calculates grade statistics for a data file of type fileReader
-class Calculator (dataFile:FileReader) {
+object Calculator {
 
-  val results = calcStats()
-
-  def calcStats() = {
+  def calcStats(dataFile:FileReader) = {
     val sum = dataFile.grades.reduce((a,b) => a + b)
     val studentCount = dataFile.grades.count(c => true)
     val gradeAverage : Float = sum.toFloat / studentCount.toFloat

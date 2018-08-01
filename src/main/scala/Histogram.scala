@@ -16,7 +16,6 @@ class Histogram (size: Int) {
     }
   }
 
-
   def print() = {
     for (i <- 0 to histogram.length - 1) {
       println("[" + i + "] = " + histogram(i));
